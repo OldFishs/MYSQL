@@ -29,3 +29,12 @@ CREATE TABLE t3(
 	id TINYINT)
 	
 INSERT INTO `t3` VALUE (127);
+
+
+CREATE TABLE t14(
+	birthday DATE,
+	job_time DATETIME,
+	login_time TIMESTAMP)
+	
+SELECT * FROM t14;
+
