@@ -71,3 +71,62 @@ SELECT * FROM student WHERE (chinese + math + english) = 189
 	OR (chinese + math + english) = 190 OR (chinese + math + english) = 191;
 SELECT * FROM student WHERE `name` LIKE '李%' OR `name` LIKE '宋%';
 SELECT * FROM student WHERE (math - chinese) > 30;
+
+#order by 使用
+#对数学成绩排序后输出〖升序〗。
+SELECT * FROM student
+ORDER BY math;
+
+#对总分按从高到低的顺序输出
+SELECT `name`,(chinese + math + english) AS total FROM student ORDER BY total DESC;
+#对姓李的学生成绩排序输出（升序）
+SELECT `name`,(chinese + math + english) AS total
+ FROM student WHERE `name` LIKE '张%'
+ ORDER BY total;
+
+
+
+#count的使用
+#统计一个班级共有多少学生？
+SELECT COUNT(*) FROM student;
+#统计数学成绩大于 90 的学生有多少个？
+SELECT COUNT(*) FROM student WHERE math > 90;
+#统计总分大于 250 的人数有多少？
+SELECT COUNT(*) FROM student WHERE (math + chinese + math) > 250;	
+#count(*) 和 count(列）的区别
+#(*)返回满足条件的记录行数 （列）返回满足条件的某列排除null
+
+CREATE TABLE t15(
+	`name` VARCHAR(20));
+INSERT INTO t15 VALUES('吃饭时间');
+INSERT INTO t15 VALUES('休息时间');
+INSERT INTO t15 VALUES(NULL);
+
+SELECT COUNT(*) FROM t15;
+SELECT COUNT(`name`) FROM t15;
+
+
+
+#sum的使用
+#统计一个班级数学总成绩？
+SELECT SUM(math) FROM student;
+#统计一个班级语文、英语、数学各科的总成绩
+SELECT SUM(math) AS math ,SUM(english) AS english,SUM(chinese) AS english FROM student;
+#统计一个班级语文、英语、数学的成绩总和
+SELECT SUM(math + chinese + english) AS total FROM student;
+#统计一个班级语文成绩平均分
+SELECT SUM(chinese)/COUNT(*) FROM student;
+
+
+#avg的使用
+#数学平均分
+SELECT AVG(math) FROM student ;
+#总分平均分
+SELECT AVG(math + chinese + english) FROM student;
+
+
+#max使用min使用
+SELECT MAX(math) ,MIN(math) FROM student;
+
+
+
